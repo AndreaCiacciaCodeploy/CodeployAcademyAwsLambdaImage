@@ -27,3 +27,9 @@ Dalla Console, nella sezione Environment variables, impostare le seguenti variab
 **RESIZE_HEIGHT** (l'altezza da impostare durante il resize)<br/>
 **RESIZE_WIDTH** (la larghezza da impostare durante il resize)<br/>
 **PUBLIC** (valorizzare con true o false. Se true il file caricato dopo la resize sará accessibile pubblicamente)<br/>
+
+Di seguito uno screen per completezza.
+
+<p align="center">
+  <img src="https://github.com/AndreaCiacciaCodeploy/CodeployAccademyAwsLambdaImage/blob/develop/extra/lambda.png?raw=true">
+</p>
