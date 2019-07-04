@@ -22,8 +22,8 @@ Creare la lambda con le sequenti impostazioni di base:
 La lambda utilizza inoltre delle variabili d'ambiente impostate in aws.
 Dalla Console, nella sezione Environment variables, impostare le seguenti variabili
 
-**DEST_BUCKET** (indcare il nome del bucket di destinazione)<br\>
-**DEST_FOLDER** (indicare eventuale folder di destinazione)<br\>
-**RESIZE_HEIGHT** (l'altezza da impostare durante il resize)<br\>
-**RESIZE_WIDTH** (la larghezza da impostare durante il resize)<br\>
-**PUBLIC** (valorizzare con true o false. Se true il file caricato dopo la resize sará accessibile pubblicamente)<br\>
+**DEST_BUCKET** (indcare il nome del bucket di destinazione)<br/>
+**DEST_FOLDER** (indicare eventuale folder di destinazione)<br/>
+**RESIZE_HEIGHT** (l'altezza da impostare durante il resize)<br/>
+**RESIZE_WIDTH** (la larghezza da impostare durante il resize)<br/>
+**PUBLIC** (valorizzare con true o false. Se true il file caricato dopo la resize sará accessibile pubblicamente)<br/>
