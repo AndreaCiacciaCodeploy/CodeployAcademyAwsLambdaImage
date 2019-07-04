@@ -17,7 +17,9 @@ Di seguito un'immagine riassuntiva del flusso implementato
 Creare la lambda con le sequenti impostazioni di base:
 
 - Runtime Java8 
-- Handler com.codeploy.accademy.awslambda.awslambda.CodeployLambdaFunctionHandler::handleRequest (package, classe e nome del metodo con handler dell'evento scatenante)
+- Handler com.codeploy.accademy.awslambda.CodeployLambdaFunctionHandler::handleRequest (package, classe e nome del metodo con handler dell'evento scatenante)
+
+Abilitare il trigger associando il servizio AWS S3 e il metodo di PUT (usato quando un file viene caricato sul bucket).
 
 La lambda utilizza inoltre delle variabili d'ambiente impostate in aws.
 Dalla Console, nella sezione Environment variables, impostare le seguenti variabili
@@ -33,3 +35,9 @@ Di seguito uno screen per completezza.
 <p align="center">
   <img src="https://github.com/AndreaCiacciaCodeploy/CodeployAccademyAwsLambdaImage/blob/develop/extra/lambda.png?raw=true">
 </p>
+
+Compilare e deployare il codice eseguibile dalla console (per ulteriore semplicitá nella cartella extra é presente il codice eseguibile .jar)
+Testare il tutto caricando un file sul bucket di origine.
+
+Per monitorare l'esecuzione é possibile visualizzare i log su CloudWatch Logs.
+Quando l'esecuzione é terminata, il file di output, sará presente nel bucket di destinazione.
