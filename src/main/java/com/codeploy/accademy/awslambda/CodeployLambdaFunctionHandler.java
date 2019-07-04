@@ -1,4 +1,4 @@
-package com.codeploy.accademy.awslambda.awslambda;
+package com.codeploy.accademy.awslambda;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
