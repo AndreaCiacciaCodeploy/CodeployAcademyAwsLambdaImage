@@ -13,7 +13,7 @@ Di seguito un'immagine riassuntiva del flusso implementato
 - definizione di un ruolo che permetta di agire su S3 e Aws Lambda
 - creazione di 1 o 2 bucket s3
 
-# crearzione lambda 
+# creazione lambda 
 Creare la lambda con le sequenti impostazioni di base:
 
 - Runtime Java8 
