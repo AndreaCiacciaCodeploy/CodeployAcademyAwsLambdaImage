@@ -5,11 +5,8 @@ Quando un file viene (png/jpg) viene caricato su un bucket s3, viene avviata una
 Di seguito un'immagine riassuntiva del flusso implementato
 
 <p align="center">
-  <img width="460" height="300" src="https://github.com/AndreaCiacciaCodeploy/CodeployAccademyAwsLambdaImage/blob/develop/extra/codeployawslambdaimage.png?raw=true">
+  <img src="https://github.com/AndreaCiacciaCodeploy/CodeployAccademyAwsLambdaImage/blob/develop/extra/codeployawslambdaimage.png?raw=true">
 </p>
-
-![alt awslambdaimage](https://github.com/AndreaCiacciaCodeploy/CodeployAccademyAwsLambdaImage/blob/develop/extra/codeployawslambdaimage.png?raw=true)
-
 
 # prerequisiti
 - account aws
