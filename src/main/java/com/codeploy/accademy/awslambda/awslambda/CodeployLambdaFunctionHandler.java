@@ -73,8 +73,6 @@ public class CodeployLambdaFunctionHandler implements RequestHandler<S3Event, St
 		context.getLogger().log("Folder destinazione: "+destFolder);
 		context.getLogger().log("Resize Height: "+resizeHeight);
 		context.getLogger().log("Resize Width: "+resizeWidth);
-		String format = "jpg";
-		if (contentType.equals("image/png")) format = "png";
 
 		InputStream reader = new BufferedInputStream(response.getObjectContent());
 		BufferedImage image;
@@ -86,7 +84,7 @@ public class CodeployLambdaFunctionHandler implements RequestHandler<S3Event, St
 			context.getLogger().log("Resize effettuata...");
 
 			ByteArrayOutputStream os = new ByteArrayOutputStream();
-			ImageIO.write(resized, format, os);
+			ImageIO.write(resized, "png", os);
 			InputStream is = new ByteArrayInputStream(os.toByteArray());
 
 			ObjectMetadata metadata = new ObjectMetadata();
@@ -96,7 +94,7 @@ public class CodeployLambdaFunctionHandler implements RequestHandler<S3Event, St
 			String file = p.getFileName().toString();
 			
 			String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-			String fileNameOut = stripExtension(file)+"_"+timeStamp+"."+format;
+			String fileNameOut = stripExtension(file)+"_"+timeStamp+".png";
 
 			// il file viene scritto da stream
 			if (fileOutPerm !=null && fileOutPerm.equals("true")) s3.putObject(new PutObjectRequest(destBucket, destFolder + fileNameOut, is, metadata).withCannedAcl(CannedAccessControlList.PublicRead));
