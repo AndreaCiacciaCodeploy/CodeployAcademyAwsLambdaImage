@@ -4,12 +4,26 @@ Quando un file viene (png/jpg) viene caricato su un bucket s3, viene avviata una
 
 Di seguito un'immagine riassuntiva del flusso implementato
 
-![alt awslambdaimage](https://github.com/AndreaCiacciaCodeploy/CodeployAccademyAwsLambdaImage/blob/develop/extra/codeployawslambdaimage.png?raw=true)
+<p align="center">
+  <img src="https://github.com/AndreaCiacciaCodeploy/CodeployAccademyAwsLambdaImage/blob/develop/extra/codeployawslambdaimage.png?raw=true">
+</p>
 
 # prerequisiti
 - account aws
 - definizione di un ruolo che permetta di agire su S3 e Aws Lambda
 - creazione di 1 o 2 bucket s3
 
+# crearzione lambda 
+Creare la lambda con le sequenti impostazioni di base:
 
+- Runtime Java8 
+- Handler com.codeploy.accademy.awslambda.awslambda.CodeployLambdaFunctionHandler::handleRequest (package, classe e nome del metodo con handler dell'evento scatenante)
 
+La lambda utilizza inoltre delle variabili d'ambiente impostate in aws.
+Dalla Console, nella sezione Environment variables, impostare le seguenti variabili
+
+**DEST_BUCKET** (indcare il nome del bucket di destinazione)<br/>
+**DEST_FOLDER** (indicare eventuale folder di destinazione)<br/>
+**RESIZE_HEIGHT** (l'altezza da impostare durante il resize)<br/>
+**RESIZE_WIDTH** (la larghezza da impostare durante il resize)<br/>
+**PUBLIC** (valorizzare con true o false. Se true il file caricato dopo la resize sará accessibile pubblicamente)<br/>
