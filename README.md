@@ -1,11 +1,11 @@
-# CodeployAccademyAwsLambdaImage
+# CodeployAcademyAwsLambdaImage
 Questo piccolo progetto serve per introdurre il servizio Aws Lambda.
 Quando un file viene (png/jpg) viene caricato su un bucket s3, viene avviata una lambda aws che effettua una resize dell'immagine e un successivo caricamento del file generato in un bucket diverso da quello iniziale.
 
 Di seguito un'immagine riassuntiva del flusso implementato
 
 <p align="center">
-  <img src="https://github.com/AndreaCiacciaCodeploy/CodeployAccademyAwsLambdaImage/blob/develop/extra/codeployawslambdaimage.png?raw=true">
+  <img src="https://github.com/AndreaCiacciaCodeploy/CodeployAcademyAwsLambdaImage/blob/develop/extra/codeployawslambdaimage.png?raw=true">
 </p>
 
 # prerequisiti
@@ -17,7 +17,7 @@ Di seguito un'immagine riassuntiva del flusso implementato
 Creare la lambda con le sequenti impostazioni di base:
 
 - Runtime Java8 
-- Handler com.codeploy.accademy.awslambda.CodeployLambdaFunctionHandler::handleRequest (package, classe e nome del metodo con handler dell'evento scatenante)
+- Handler com.codeploy.academy.awslambda.CodeployLambdaFunctionHandler::handleRequest (package, classe e nome del metodo con handler dell'evento scatenante)
 
 Abilitare il trigger associando il servizio AWS S3 e il metodo di PUT (usato quando un file viene caricato sul bucket).
 
@@ -33,7 +33,7 @@ Dalla Console, nella sezione Environment variables, impostare le seguenti variab
 Di seguito uno screen per completezza.
 
 <p align="center">
-  <img src="https://github.com/AndreaCiacciaCodeploy/CodeployAccademyAwsLambdaImage/blob/develop/extra/lambda.png?raw=true">
+  <img src="https://github.com/AndreaCiacciaCodeploy/CodeployAcademyAwsLambdaImage/blob/develop/extra/lambda.png?raw=true">
 </p>
 
 Compilare e deployare il codice eseguibile dalla console (per ulteriore semplicitá nella cartella extra é presente il codice eseguibile .jar)
