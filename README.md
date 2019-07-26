@@ -29,6 +29,7 @@ Dalla Console, nella sezione Environment variables, impostare le seguenti variab
 **RESIZE_HEIGHT** (l'altezza da impostare durante il resize)<br/>
 **RESIZE_WIDTH** (la larghezza da impostare durante il resize)<br/>
 **PUBLIC** (valorizzare con true o false. Se true il file caricato dopo la resize sará accessibile pubblicamente)<br/>
+**FILEOUT_RENAME** (valorizzare con true o false. Se true il file caricato verrá rinominato con un suffisso rappresentante il timestamp)<br/>
 
 Di seguito uno screen per completezza.
 
