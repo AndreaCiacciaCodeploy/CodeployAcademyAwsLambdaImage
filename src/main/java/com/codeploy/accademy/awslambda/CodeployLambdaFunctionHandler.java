@@ -2,6 +2,7 @@ package com.codeploy.accademy.awslambda;
 
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -21,6 +22,7 @@ import com.amazonaws.services.lambda.runtime.events.S3Event;
 import com.amazonaws.services.s3.AmazonS3;
 import com.amazonaws.services.s3.AmazonS3ClientBuilder;
 import com.amazonaws.services.s3.model.CannedAccessControlList;
+import com.amazonaws.services.s3.model.CopyObjectRequest;
 import com.amazonaws.services.s3.model.GetObjectRequest;
 import com.amazonaws.services.s3.model.ObjectMetadata;
 import com.amazonaws.services.s3.model.PutObjectRequest;
@@ -60,6 +62,7 @@ public class CodeployLambdaFunctionHandler implements RequestHandler<S3Event, St
 		String resizeHeight = System.getenv("RESIZE_HEIGHT");
 		String resizeWidth = System.getenv("RESIZE_WIDTH");
 		String fileOutPerm = System.getenv("PUBLIC");
+		String fileOutRename = System.getenv("FILEOUT_RENAME");
 
 		// Get the object from the event and show its content type
 		String bucket = event.getRecords().get(0).getS3().getBucket().getName();
@@ -93,8 +96,13 @@ public class CodeployLambdaFunctionHandler implements RequestHandler<S3Event, St
 			Path p = Paths.get(key);
 			String file = p.getFileName().toString();
 			
-			String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-			String fileNameOut = stripExtension(file)+"_"+timeStamp+".png";
+			String fileNameOut = stripExtension(file);
+			if (fileOutRename !=null && fileOutRename.equals("true")) {
+				String timeStamp = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+				fileNameOut = fileNameOut+"_"+timeStamp+".png";				
+			} else {
+				fileNameOut=fileNameOut+".png";	
+			}
 
 			// il file viene scritto da stream
 			if (fileOutPerm !=null && fileOutPerm.equals("true")) s3.putObject(new PutObjectRequest(destBucket, destFolder + fileNameOut, is, metadata).withCannedAcl(CannedAccessControlList.PublicRead));
@@ -118,11 +126,28 @@ public class CodeployLambdaFunctionHandler implements RequestHandler<S3Event, St
 	 * @param width
 	 * @return
 	 */
-	private BufferedImage resize(BufferedImage img, int height, int width) {
-		Image tmp = img.getScaledInstance(width, height, Image.SCALE_SMOOTH);
-		BufferedImage resized = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
+	private BufferedImage resize(BufferedImage img, int newHeight, int newWidth) {
+		
+		double thumbRatio = (double) newWidth / (double) newHeight;
+        int imageWidth = img.getWidth(null);
+        int imageHeight = img.getHeight(null);
+        double aspectRatio = (double) imageWidth / (double) imageHeight;
+
+        if (thumbRatio < aspectRatio) {
+            newHeight = (int) (newWidth / aspectRatio);
+        } else {
+            newWidth = (int) (newHeight * aspectRatio);
+        }
+        
+		Image tmp = img.getScaledInstance(newWidth, newHeight, Image.SCALE_SMOOTH);
+		BufferedImage resized = new BufferedImage(newWidth, newHeight, BufferedImage.TYPE_INT_ARGB);
 		Graphics2D g2d = resized.createGraphics();
-		g2d.drawImage(tmp, 0, 0, null);
+		
+		g2d.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+		g2d.drawImage(tmp, 0, 0, newWidth, newHeight, null);
+            
+		//g2d.drawImage(tmp, 0, 0, null);
 		g2d.dispose();
 		return resized;
 	}
